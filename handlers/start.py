@@ -13,9 +13,9 @@ router = Router()
 @router.message(CommandStart())
 async def start(message: Message, state: FSMContext):
     await state.set_state(Form.wait)
-    photo = await get_photo('кубики')
+    photo = await get_photo('лого')
     await message.answer_photo(
         photo=photo)
-    text = 'Здравствуйте! Мы приветствуем вас в нашем боте PPPPP, для начала вам необходимо заполнить анкету! Нажмите на кнопку ниже чтобы начать 👇'
+    text = 'Здравствуйте! Мы приветствуем вас в нашем боте, для начала вам необходимо заполнить анкету! Нажмите на кнопку ниже чтобы начать 👇'
     await message.answer(text=text, reply_markup=form_button)
     await message.delete()
