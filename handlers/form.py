@@ -9,6 +9,7 @@ from re import fullmatch
 from buttons import menubutton, linkbuttons_2
 from handlers.poll import survey
 from data import create_profile, edit_profile
+from handlers.dice import dice
 
 
 router = Router()
@@ -96,6 +97,8 @@ async def reply(message: Message):
         await message.answer_location(latitude=55.818748210701465, longitude=49.1208645081678)
     elif message.text == 'Пройти опрос ❓':
         await survey(message)
+    elif message.text == 'Бросить кубик 🎲':
+        await dice(message)
     elif message.text == '/help':
         text = '/start - запустить бота\n/help - помощь\n/about - информация о боте\n/menu - вывод меню '
         await message.answer(text=text)

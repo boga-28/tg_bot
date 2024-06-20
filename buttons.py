@@ -31,11 +31,9 @@ linkbuttons_2 = InlineKeyboardMarkup(
 
 menu_options = ReplyKeyboardMarkup(
             keyboard=[
-                [KeyboardButton(text='Помощь 🆘',)],
-                [KeyboardButton(text='О боте ℹ️')],
-                [KeyboardButton(text='Услуги 👑',)],
-                [KeyboardButton(text='Локация 📍',)],
-                [KeyboardButton(text='Пройти опрос ❓',)]
+                [KeyboardButton(text='Помощь 🆘',), KeyboardButton(text='О боте ℹ️')],
+                [KeyboardButton(text='Услуги 👑',), KeyboardButton(text='Локация 📍',)],
+                [KeyboardButton(text='Пройти опрос ❓',), KeyboardButton(text='Бросить кубик 🎲',)]
             ]
         )
 
