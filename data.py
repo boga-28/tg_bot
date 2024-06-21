@@ -27,10 +27,3 @@ async def check_profile(id):
 async def edit_profile(id, name, age, mail):
     cur.execute(f'UPDATE person SET name = ?, age = ?, mail = ? WHERE user_id == ?', (name, age, mail, id))
     db.commit()
-
-
-# cur.execute("CREATE TABLE IF NOT EXISTS person(user_id TEXT PRIMARY KEY, name TEXT, mail TEXT, age TEXT)")
-# cur.execute("INSERT INTO person VALUES(?, ?, ?, ?)", (id, name, mail, age))
-# db.commit()
-# cur.execute(f'UPDATE person SET name = ?, age = ?, mail = ? WHERE user_id = ?', (name, age, mail, id))
-# db.commit()

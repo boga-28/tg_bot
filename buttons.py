@@ -12,7 +12,6 @@ menubutton = ReplyKeyboardMarkup(
     )
 
 
-
 linkbuttons = InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(text='Переход', url='https://www.youtube.com/watch?v=0tcyiwF2Yms')],

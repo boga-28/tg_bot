@@ -1,5 +1,6 @@
 from aiogram.fsm.state import StatesGroup, State
 
+
 class Form(StatesGroup):
     wait = State()
     name = State()
@@ -13,6 +14,7 @@ class Menu(StatesGroup):
     point_1 = State()
     point_2 = State()
     point_3 = State()
+    connection = State()
 
 
 class Poll(StatesGroup):

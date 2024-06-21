@@ -6,10 +6,11 @@ from aiogram import Router
 from aiogram.fsm.context import FSMContext
 from system.states import Form, Menu
 from re import fullmatch
-from buttons import menubutton, linkbuttons_2
+from buttons import menubutton
 from handlers.poll import survey
 from data import create_profile, edit_profile
 from handlers.dice import dice
+from admin import admin
 
 
 router = Router()
@@ -70,7 +71,7 @@ data = []
 
 
 @router.message(Menu.to_menu)
-async def reply(message: Message):
+async def reply(message: Message, state: FSMContext):
     text = '<i>Привет! Я чат-бот и готов помочь вам</i>. Вот список доступных функций:' \
            '\n\n1. Помощь - показать список доступных команд\n2. О боте - узнать больше о чат-боте' \
            '\n3. Услуги - узнать о доступных услугах\n4. Контакты - связаться с нами' \
@@ -78,8 +79,9 @@ async def reply(message: Message):
     if message.text.lower() == 'меню' or message.text.lower() == '/menu':
         await message.answer(text=text, reply_markup=menu_options, parse_mode='html')
     elif message.text == 'Помощь 🆘':
-        await message.answer(text='Если у вас возникли какие либо проблемы с ботом вы можете обратится в поддержку!',
-                             reply_markup=linkbuttons_2)
+        await state.set_state(Menu.connection)
+        await message.answer('Напишите своё обращение в чат:',reply_markup=ReplyKeyboardRemove())
+
     elif message.text == 'О боте ℹ️':
         await message.answer(text='Добро пожаловать в раздел О боте! Здесь вы найдете информацию о создателях этого'\
                                                                     'удивительного бота, его функциях и возможностях.'\
@@ -109,3 +111,11 @@ async def reply(message: Message):
         await message.delete()
     else:
         await message.answer('Извините я вас не понимаю, попробуйте вызвать другую функцию)')
+
+
+@router.message(Menu.connection)
+async def to_admin(message: Message, state: FSMContext):
+    await admin(message.text)
+    await message.answer(text='спасибо, обращение отправлено')
+    await message.answer('меню:', reply_markup=menubutton)
+    await state.set_state(Menu.to_menu)

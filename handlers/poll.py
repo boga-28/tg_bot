@@ -2,7 +2,7 @@ from aiogram.types import (
     Message, PollAnswer, )
 from aiogram import Router
 import asyncio
-from main import bot
+
 
 router = Router()
 
